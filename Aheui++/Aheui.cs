@@ -19,7 +19,7 @@ namespace Aheui__
         [DebugOnly]
         public event Action<int, char> StackPopped;
 
-
+        public bool IsDebugging { get; private set; }
         public bool IsFinished { get { throw new NotImplementedException(); } }
 
         public Aheui(string script)
@@ -56,8 +56,7 @@ namespace Aheui__
                 //DO
             }
         }
-
-        [DebugOnly]
+        
         public void RunChar(char c)
         {
 
