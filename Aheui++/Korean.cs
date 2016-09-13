@@ -3,19 +3,19 @@
     public struct Letter
     {
         public bool IsEmpty;
-        public char Chosung, Jungsung, Jongsung;
-        public Letter(char cho, char jung, char jong)
+        public char Chosung, Jwungsung, Jongsung;
+        public Letter(char cho, char jwung, char jong)
         {
             IsEmpty = false;
             Chosung = cho;
-            Jungsung = jung;
+            Jwungsung = jwung;
             Jongsung = jong;
         }
 
         public Letter(bool empty)
         {
             IsEmpty = empty;
-            Chosung = Jungsung = Jongsung = ' ';
+            Chosung = Jwungsung = Jongsung = ' ';
         }
     }
     public static class Korean
@@ -36,7 +36,7 @@
             , 0x3140, 0x3141, 0x3142, 0x3144, 0x3145, 0x3146, 0x3147, 0x3148
             , 0x314a, 0x314b, 0x314c, 0x314d, 0x314e };
 
-        public static Letter Parse(char data)
+        public static Letter ParseChar(char data)
         {
             int a, b, c; //자소버퍼 초성중성종성순
             if (data >= 0xAC00 && data <= 0xD7A3) //한글일 경우만 분리 시행
