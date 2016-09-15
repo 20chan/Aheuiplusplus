@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Aheui__
 {
-    public class Aheui
+    public class Aheui<T>
     {
         #region static
-        public static string InterpretScript(string script)
+        public static string Execute(string script)
         {
             System.Text.StringBuilder result = new System.Text.StringBuilder();
-            var a = new Aheui(script);
+            var a = new Aheui<T>(script);
             a.OutputReleased += (output) => result.Append(output);
 
             return result.ToString();
@@ -24,14 +24,11 @@ namespace Aheui__
 
         public Char CurrentChar { get { return Script[CurrentLocation.Y][CurrentLocation.X]; } }
         public Location CurrentLocation { get; private set; }
-        private Stack<int>[] _stacks;
-        [DebugOnly]
-        public event Action<int, char> StackPushed;
-        [DebugOnly]
-        public event Action<int, char> StackPopped;
+
+        private Storage<T> _storage;
 
         public bool IsDebugging { get; private set; }
-        public bool IsFinished { get { throw new NotImplementedException(); } }
+        public bool IsFinished => Korean.ParseChar(CurrentChar).Chosung == 'ㅎ';
 
         public Aheui(string script, bool debug = false)
         {
@@ -50,7 +47,7 @@ namespace Aheui__
 
         public void Reset()
         {
-            _stacks = new Stack<int>[28];
+            _storage.Reset();
         }
 
         public void RunAll()
@@ -75,6 +72,11 @@ namespace Aheui__
         public void RunChar(char c)
         {
             Letter letter = Korean.ParseChar(c);
+
+            switch(letter.Chosung)
+            {
+
+            }
         }
 
         public Location GetNextLoc()
@@ -85,6 +87,16 @@ namespace Aheui__
         {
             Location nextLoc = GetNextLoc();
             return Script[nextLoc.Y][nextLoc.X];
+        }
+
+        private void Push(T val)
+        {
+            _storage.Push(val);
+        }
+
+        private T Pop()
+        {
+            return _storage.Pop();
         }
     }
 
@@ -116,10 +128,5 @@ namespace Aheui__
         None,
         Number,
         String
-    }
-
-    public class DebugOnly : Attribute
-    {
-
     }
 }

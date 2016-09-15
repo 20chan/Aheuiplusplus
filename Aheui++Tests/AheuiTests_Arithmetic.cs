@@ -11,125 +11,81 @@ namespace Aheui__.Tests
     [TestClass()]
     public class AheuiTests
     {
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Sum1()
         {
-            string result = "";
-            Aheui aheui = new Aheui("박받다망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "5");
+            Assert.AreEqual(Aheui<int>.Execute("박받다망희"), "5");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Sum2()
         {
-            string result = "";
-            Aheui aheui = new Aheui("발밥다밦다망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "15");
+            Assert.AreEqual(Aheui<int>.Execute("발밥다밦다망희"), "15");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Sum3()
         {
-            string result = "";
-            Aheui aheui = new Aheui("밦밗밣다다망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "18");
+            Assert.AreEqual(Aheui<int>.Execute("밦밗밣다다망희"), "18");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Minus1()
         {
-            string result = "";
-            Aheui aheui = new Aheui("받박타망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "1");
+            Assert.AreEqual(Aheui<int>.Execute("받박타망희"), "1");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Minus2()
         {
-            string result = "";
-            Aheui aheui = new Aheui("박받타망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "-1");
+            Assert.AreEqual(Aheui<int>.Execute("박받타망희"), "-1");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Minus3()
         {
-            string result = "";
-            Aheui aheui = new Aheui("박박타망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "0");
+            Assert.AreEqual(Aheui<int>.Execute("박박타망희"), "0");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Multi1()
         {
-            string result = "";
-            Aheui aheui = new Aheui("박받따망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "6");
+            Assert.AreEqual(Aheui<int>.Execute("박받따망희"), "6");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Multi2()
         {
-            string result = "";
-            Aheui aheui = new Aheui("박발박발따따따망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "100");
+            Assert.AreEqual(Aheui<int>.Execute("박발박발따따따망희"), "100");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Div1()
         {
-            string result = "";
-            Aheui aheui = new Aheui("박발따박나망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "5");
+            Assert.AreEqual(Aheui<int>.Execute("박발따박나망희"), "5");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Div2()
         {
-            string result = "";
-            Aheui aheui = new Aheui("받박나망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "1");
+            Assert.AreEqual(Aheui<int>.Execute("받박나망희"), "1");
         }
 
-        [TestCategory("arith")]
+        [TestCategory("standard")]
         [TestMethod()]
         public void AheuiTest_Div3()
         {
-            string result = "";
-            Aheui aheui = new Aheui("반받나망희");
-            aheui.OutputReleased += (output) => result = output;
-            aheui.RunAll();
-            Assert.AreEqual(result, "0");
+            Assert.AreEqual(Aheui<int>.Execute("반받나망희"), "0");
         }
     }
 }
