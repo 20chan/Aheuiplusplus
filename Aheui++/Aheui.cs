@@ -52,7 +52,7 @@ namespace Aheui__
 
         public void RunAll()
         {
-            while (IsFinished)
+            while (!IsFinished)
                 RunStep();
         }
         public void RunStep()
