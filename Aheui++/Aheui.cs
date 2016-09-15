@@ -30,14 +30,19 @@ namespace Aheui__
         public bool IsDebugging { get; private set; }
         public bool IsFinished => Korean.ParseChar(CurrentChar).Chosung == 'ㅎ';
 
-        public Aheui(string script, bool debug = false)
+        private Aheui()
+        {
+            _storage = new Storage<T>();
+        }
+
+        public Aheui(string script, bool debug = false) : this()
         {
             Script = script.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             OriginalScript = script;
 
             IsDebugging = debug;
         }
-        public Aheui(string[] script, bool debug = false)
+        public Aheui(string[] script, bool debug = false) : this()
         {
             Script = script;
             OriginalScript = string.Join("\r\n", script);
@@ -72,21 +77,151 @@ namespace Aheui__
         public void RunChar(char c)
         {
             Letter letter = Korean.ParseChar(c);
+            Location nextLoc = GetNextLoc();
 
             switch(letter.Chosung)
             {
+                case 'ㅎ':
+                    break;
+                case 'ㄷ':
+                    {
+                        dynamic first = _storage.Pop();
+                        dynamic last = _storage.Pop();
+                        _storage.Push(first + last);
+                        break;
+                    }
+                case 'ㄸ':
+                    {
+                        dynamic first = _storage.Pop();
+                        dynamic last = _storage.Pop();
+                        _storage.Push(first * last);
+                        break;
+                    }
+                case 'ㅌ':
+                    {
+                        dynamic first = _storage.Pop();
+                        dynamic last = _storage.Pop();
+                        _storage.Push(first - last);
+                        break;
+                    }
+                case 'ㄴ':
+                    {
+                        dynamic first = _storage.Pop();
+                        dynamic last = _storage.Pop();
+                        _storage.Push(first / last);
+                        break;
+                    }
+                case 'ㄹ':
+                    {
+                        dynamic first = _storage.Pop();
+                        dynamic last = _storage.Pop();
+                        _storage.Push(first % last);
+                        break;
+                    }
 
+                case 'ㅂ':
+                    {
+                        _storage.Push(GetInput(letter.Jongsung));
+                        break;
+                    }
             }
+
+            CurrentLocation = nextLoc;
         }
 
-        public Location GetNextLoc()
+        public Location GetNextLoc(bool reversed = false)
         {
-            throw new NotImplementedException();
+            char jwung = Korean.ParseChar(CurrentChar).Jwungsung;
+            Location res = CurrentLocation;
+
+            // Direction
+            switch(jwung)
+            {
+                case 'ㅏ':
+                case 'ㅑ':
+                    res.Direction = Direction.Right;
+                    break;
+                case 'ㅓ':
+                case 'ㅕ':
+                    res.Direction = Direction.Left;
+                    break;
+                case 'ㅗ':
+                case 'ㅛ':
+                    res.Direction = Direction.Up;
+                    break;
+                case 'ㅜ':
+                case 'ㅠ':
+                    res.Direction = Direction.Down;
+                    break;
+
+                case 'ㅣ':
+                    if (res.Direction == Direction.Left)
+                        res.Direction = Direction.Right;
+                    else if (res.Direction == Direction.Right)
+                        res.Direction = Direction.Left;
+                    break;
+                case 'ㅡ':
+                    if (res.Direction == Direction.Up)
+                        res.Direction = Direction.Down;
+                    else if (res.Direction == Direction.Down)
+                        res.Direction = Direction.Up;
+                    break;
+                case 'ㅢ':
+                    if (res.Direction == Direction.Left)
+                        res.Direction = Direction.Right;
+                    else if (res.Direction == Direction.Right)
+                        res.Direction = Direction.Left;
+                    else if (res.Direction == Direction.Up)
+                        res.Direction = Direction.Down;
+                    else if (res.Direction == Direction.Down)
+                        res.Direction = Direction.Up;
+                    break;
+                default:
+                    throw new AheuiException();
+            }
+
+            //Power
+            switch(jwung)
+            {
+                case 'ㅏ':
+                case 'ㅓ':
+                case 'ㅗ':
+                case 'ㅜ':
+                    res.Power = 1;
+                    break;
+                case 'ㅑ':
+                case 'ㅕ':
+                case 'ㅛ':
+                case 'ㅠ':
+                    res.Power = 2;
+                    break;
+                default:
+                    break;
+            }
+
+            if(reversed)
+            {
+                if (res.Direction == Direction.Left)
+                    res.Direction = Direction.Right;
+                else if (res.Direction == Direction.Right)
+                    res.Direction = Direction.Left;
+                else if (res.Direction == Direction.Up)
+                    res.Direction = Direction.Down;
+                else if (res.Direction == Direction.Down)
+                    res.Direction = Direction.Up;
+            }
+
+            return res;
         }
         public char GetNextChar()
         {
             Location nextLoc = GetNextLoc();
             return Script[nextLoc.Y][nextLoc.X];
+        }
+
+        private T GetInput(char arg)
+        {
+            throw new NotImplementedException();
         }
 
         private void Push(T val)
@@ -127,6 +262,6 @@ namespace Aheui__
     {
         None,
         Number,
-        String
+        Char
     }
 }

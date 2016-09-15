@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aheui__
 {
-    class Program
+    public class AheuiException : Exception
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }
