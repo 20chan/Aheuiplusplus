@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aheui__.Tests
+namespace Aheui__Tests
 {
     [TestClass()]
     public class AheuiTests
