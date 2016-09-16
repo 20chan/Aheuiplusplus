@@ -18,19 +18,27 @@ namespace Aheui__
         private Stack<T>[] _stacks;
         private LinkedList<T> _queue;
 
+        public Storage()
+        {
+            Reset();
+        }
+
         public void Reset()
         {
-            throw new NotImplementedException();
+            _stacks = new Stack<T>[26];
+            for (int i = 0; i < 26; i++)
+                _stacks[i] = new Stack<T>();
+            _queue = new LinkedList<T>();
         }
 
         public void Push(T var)
         {
-            throw new NotImplementedException();
+            _stacks[SelectedStorage].Push(var);
         }
 
         public T Pop()
         {
-            throw new NotImplementedException();
+            return _stacks[SelectedStorage].Pop();
         }
 
         public void Duplicate()

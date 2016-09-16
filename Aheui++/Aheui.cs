@@ -3,23 +3,19 @@ using System.Collections.Generic;
 
 namespace Aheui__
 {
-    public class Aheui<T>
+    public abstract class Aheui<T>
     {
-        #region static
-        public static string Execute(string script)
-        {
-            System.Text.StringBuilder result = new System.Text.StringBuilder();
-            var a = new Aheui<T>(script);
-            a.OutputReleased += (output) => result.Append(output);
-
-            return result.ToString();
-        }
-        #endregion
+        protected abstract T StringToType(string val);
+        protected abstract T Add(T a, T b);
+        protected abstract T Sub(T a, T b);
+        protected abstract T Mul(T a, T b);
+        protected abstract T Div(T a, T b);
+        protected abstract T Per(T a, T b);
 
         public string[] Script { get; private set; }
         public string OriginalScript { get; }
 
-        public event Func<string, InputType> InputNeeded;
+        public event Func<InputType, string> InputNeeded;
         public event Action<string> OutputReleased;
 
         public Char CurrentChar { get { return Script[CurrentLocation.Y][CurrentLocation.X]; } }
@@ -33,6 +29,7 @@ namespace Aheui__
         private Aheui()
         {
             _storage = new Storage<T>();
+            Reset();
         }
 
         public Aheui(string script, bool debug = false) : this()
@@ -53,6 +50,7 @@ namespace Aheui__
         public void Reset()
         {
             _storage.Reset();
+            CurrentLocation = new Location(0, 0, Direction.Right, 1);
         }
 
         public void RunAll()
@@ -68,7 +66,6 @@ namespace Aheui__
         {
             while(step-- > 0 && !IsFinished)
             {
-                this.CurrentLocation = GetNextLoc();
                 RunChar(CurrentChar);
                 //DO
             }
@@ -85,43 +82,48 @@ namespace Aheui__
                     break;
                 case 'ㄷ':
                     {
-                        dynamic first = _storage.Pop();
-                        dynamic last = _storage.Pop();
-                        _storage.Push(first + last);
+                        T first = _storage.Pop();
+                        T last = _storage.Pop();
+                        _storage.Push(Add(last, first));
                         break;
                     }
                 case 'ㄸ':
                     {
-                        dynamic first = _storage.Pop();
-                        dynamic last = _storage.Pop();
-                        _storage.Push(first * last);
+                        T first = _storage.Pop();
+                        T last = _storage.Pop();
+                        _storage.Push(Mul(last, first));
                         break;
                     }
                 case 'ㅌ':
                     {
-                        dynamic first = _storage.Pop();
-                        dynamic last = _storage.Pop();
-                        _storage.Push(first - last);
+                        T first = _storage.Pop();
+                        T last = _storage.Pop();
+                        _storage.Push(Sub(last, first));
                         break;
                     }
                 case 'ㄴ':
                     {
-                        dynamic first = _storage.Pop();
-                        dynamic last = _storage.Pop();
-                        _storage.Push(first / last);
+                        T first = _storage.Pop();
+                        T last = _storage.Pop();
+                        _storage.Push(Div(last, first));
                         break;
                     }
                 case 'ㄹ':
                     {
-                        dynamic first = _storage.Pop();
-                        dynamic last = _storage.Pop();
-                        _storage.Push(first % last);
+                        T first = _storage.Pop();
+                        T last = _storage.Pop();
+                        _storage.Push(Per(last, first));
                         break;
                     }
 
                 case 'ㅂ':
                     {
                         _storage.Push(GetInput(letter.Jongsung));
+                        break;
+                    }
+                case 'ㅁ':
+                    {
+                        OutputReleased?.Invoke(GetOutput(_storage.Pop(), letter.Jongsung));
                         break;
                     }
             }
@@ -211,6 +213,22 @@ namespace Aheui__
                     res.Direction = Direction.Up;
             }
 
+            switch(res.Direction)
+            {
+                case Direction.Left:
+                    res.X -= res.Power;
+                    break;
+                case Direction.Right:
+                    res.X += res.Power;
+                    break;
+                case Direction.Up:
+                    res.Y -= res.Power;
+                    break;
+                case Direction.Down:
+                    res.Y += res.Power;
+                    break;
+            }
+
             return res;
         }
         public char GetNextChar()
@@ -221,7 +239,35 @@ namespace Aheui__
 
         private T GetInput(char arg)
         {
-            throw new NotImplementedException();
+            if(arg == 'ㅇ')
+            {
+                return StringToType(InputNeeded?.Invoke(InputType.Number));
+            }
+            else if(arg == 'ㅎ')
+            {
+                int i = (InputNeeded?.Invoke(InputType.Char))[0];
+                return StringToType(i.ToString());
+            }
+            else
+            {
+                return StringToType(Korean.GetStrokeCount(arg).ToString());
+            }
+        }
+
+        private string GetOutput(T val, char arg)
+        {
+            if (arg == 'ㅇ')
+            {
+                dynamic d = val;
+                return ((int)d).ToString();
+            }
+            else if (arg == 'ㅎ')
+            {
+                dynamic d = val;
+                return ((char)d).ToString();
+            }
+            else
+                throw new NotImplementedException();
         }
 
         private void Push(T val)

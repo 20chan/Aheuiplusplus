@@ -50,5 +50,47 @@
             }
             else return new Letter(true);
         }
+
+        public static int GetStrokeCount(char jongsung)
+        {
+            switch(jongsung)
+            {
+                case 'ㄱ':
+                case 'ㄴ':
+                case 'ㅅ':
+                    return 2;
+                case 'ㄷ':
+                case 'ㅈ':
+                case 'ㅋ':
+                    return 3;
+                case 'ㅁ':
+                case 'ㅂ':
+                case 'ㅊ':
+                case 'ㅌ':
+                case 'ㅍ':
+                case 'ㄲ':
+                case 'ㄳ':
+                case 'ㅆ':
+                    return 4;
+                case 'ㄹ':
+                case 'ㄵ':
+                case 'ㄶ':
+                    return 5;
+                case 'ㅄ':
+                    return 6;
+                case 'ㄺ':
+                case 'ㄽ':
+                    return 7;
+                case 'ㅀ':
+                    return 8;
+                case 'ㄻ':
+                case 'ㄼ':
+                case 'ㄾ':
+                case 'ㄿ':
+                    return 9;
+            }
+
+            throw new AheuiException();
+        }
     }
 }

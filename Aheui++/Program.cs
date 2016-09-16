@@ -10,7 +10,8 @@ namespace Aheui__
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine(IntAheui.Execute("밝박다망희"));
+            Console.ReadLine();
         }
     }
 }

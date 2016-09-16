@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Aheui.cs" />
     <Compile Include="AheuiException.cs" />
+    <Compile Include="IntAheui.cs" />
     <Compile Include="Korean.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
