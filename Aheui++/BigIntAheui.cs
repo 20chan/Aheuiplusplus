@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Aheui__
 {
-    public class IntAheui  : Aheui<int>
+    public class BigIntAheui : Aheui<BigInteger>
     {
         #region static
         public static string Execute(string script, params string[] args)
@@ -25,53 +23,51 @@ namespace Aheui__
             return result.ToString();
         }
         #endregion
-        public IntAheui(string script, bool debug = false) : base(script, debug)
+
+        public BigIntAheui(string script, bool debug = false) : base(script, debug)
         {
 
         }
 
-        protected override int StringToType(string val)
+        protected override BigInteger StringToType(string val)
         {
-            return Convert.ToInt32(val);
+            return BigInteger.Parse(val);
         }
 
-        protected override string TypeToInt(int val)
+        protected override string TypeToInt(BigInteger val)
         {
             return val.ToString();
         }
 
-        protected override string TypeToChar(int val)
+        protected override string TypeToChar(BigInteger val)
         {
-            char c = (char)val;
+            int a = (int)val;
+            char c = (char)a;
             return c.ToString();
         }
 
-        protected override int Add(int a, int b)
+        protected override BigInteger Add(BigInteger a, BigInteger b)
         {
             return a + b;
         }
-
-        protected override int Mul(int a, int b)
-        {
-            return a * b;
-        }
-
-        protected override int Sub(int a, int b)
+        protected override BigInteger Sub(BigInteger a, BigInteger b)
         {
             return a - b;
         }
-
-        protected override int Div(int a, int b)
+        protected override BigInteger Mul(BigInteger a, BigInteger b)
+        {
+            return a * b;
+        }
+        protected override BigInteger Div(BigInteger a, BigInteger b)
         {
             return a / b;
         }
-
-        protected override int Per(int a, int b)
+        protected override BigInteger Per(BigInteger a, BigInteger b)
         {
             return a % b;
         }
 
-        protected override bool IsBiggerOrEqual(int a, int b)
+        protected override bool IsBiggerOrEqual(BigInteger a, BigInteger b)
         {
             return a <= b;
         }

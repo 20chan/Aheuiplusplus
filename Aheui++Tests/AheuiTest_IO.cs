@@ -10,7 +10,7 @@ namespace Aheui__Tests
         [TestMethod()]
         public void BasicInputTest()
         {
-            Assert.AreEqual(IntAheui.Execute("밯망희", "밯"), "48175");
+            Assert.AreEqual("48175", IntAheui.Execute("밯망희", "밯"));
         }
     }
 }

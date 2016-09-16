@@ -46,7 +46,8 @@
                 c = c % (21 * 28);
                 b = c / 28;
                 c = c % 28;
-                return new Letter((char)ChoSung[a], (char)JwungSung[b], (char)JongSung[c]);
+                
+                return new Letter((char)ChoSung[a], (char)JwungSung[b], JongSung[c] == '\0' ? ' ' : (char)JongSung[c]);
             }
             else return new Letter(true);
         }
@@ -55,6 +56,8 @@
         {
             switch(jongsung)
             {
+                case ' ':
+                    return 0;
                 case 'ㄱ':
                 case 'ㄴ':
                 case 'ㅅ':

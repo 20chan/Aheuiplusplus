@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Aheui.cs" />
     <Compile Include="AheuiException.cs" />
+    <Compile Include="BigIntAheui.cs" />
     <Compile Include="IntAheui.cs" />
     <Compile Include="Korean.cs" />
     <Compile Include="Program.cs" />
