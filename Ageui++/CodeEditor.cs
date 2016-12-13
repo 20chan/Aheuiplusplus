@@ -17,5 +17,10 @@ namespace Ageui__
             InitializeComponent();
             this.richTextBox1.Text = text;
         }
+
+        public void Highlight()
+        {
+            
+        }
     }
 }

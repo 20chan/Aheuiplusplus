@@ -44,7 +44,7 @@ namespace Ageui__
             }
 
             _openedFiles.Add(file);
-
+            AddTabPage(file);
         }
 
         private void AddTabPage(string file)
@@ -58,7 +58,7 @@ namespace Ageui__
 
         private string GetCurrentScript()
         {
-            throw new NotImplementedException();
+            return ((RichTextBox)tabControl1.SelectedTab.Controls[0].Controls[0]).Text;
         }
 
         private void Run()
@@ -69,6 +69,7 @@ namespace Ageui__
         private void StartDebug()
         {
 
+            IntAheui aheui = new IntAheui(GetCurrentScript(), true);
         }
     }
 }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -73,16 +73,6 @@
             this.splitContainer1.SplitterDistance = 658;
             this.splitContainer1.TabIndex = 0;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(650, 267);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -112,6 +102,16 @@
             this.tabControl1.Size = new System.Drawing.Size(658, 293);
             this.tabControl1.TabIndex = 0;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(650, 267);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.richTextBox1);
@@ -128,6 +128,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(3, 17);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBox1.Size = new System.Drawing.Size(652, 104);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
