@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheui++", "Aheui++\Aheui++.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheui++Tests", "Aheui++Tests\Aheui++Tests.csproj", "{BAF244A6-C96F-487D-B98C-A5D75FE72D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ageui++", "Ageui++\Ageui++.csproj", "{02A2081A-D096-4D7D-896F-DCB1011932E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BAF244A6-C96F-487D-B98C-A5D75FE72D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAF244A6-C96F-487D-B98C-A5D75FE72D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAF244A6-C96F-487D-B98C-A5D75FE72D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A2081A-D096-4D7D-896F-DCB1011932E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A2081A-D096-4D7D-896F-DCB1011932E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A2081A-D096-4D7D-896F-DCB1011932E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A2081A-D096-4D7D-896F-DCB1011932E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
