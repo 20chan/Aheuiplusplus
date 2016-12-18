@@ -20,9 +20,9 @@ namespace Ageui__
             _openedFiles = new List<string>();
         }
 
-        public MainForm(string file) : this()
+        public MainForm(string[] files) : this()
         {
-            Open(file);
+            Open(files);
         }
 
         private void Error(string text)
@@ -30,21 +30,24 @@ namespace Ageui__
             MessageBox.Show(text, "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void Open(string file)
+        private void Open(params string[] files)
         {
-            if(!File.Exists(file))
+            foreach(var file in files)
             {
-                Error("파일이 존재하지 않습니다!");
-                return;
-            }
-            if(_openedFiles.Contains(file))
-            {
-                Error("이미 파일이 열려있습니다!");
-                return;
-            }
+                if (!File.Exists(file))
+                {
+                    Error("파일이 존재하지 않습니다!");
+                    return;
+                }
+                if (_openedFiles.Contains(file))
+                {
+                    Error("이미 파일이 열려있습니다!");
+                    return;
+                }
 
-            _openedFiles.Add(file);
-            AddTabPage(file);
+                _openedFiles.Add(file);
+                AddTabPage(file);
+            }
         }
 
         private void AddTabPage(string file)
@@ -70,6 +73,14 @@ namespace Ageui__
         {
 
             IntAheui aheui = new IntAheui(GetCurrentScript(), true);
+        }
+
+        private void 폰트FToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                CodeEditor.SharedFont = fontDialog1.Font;
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Ageui__
 {
     public partial class CodeEditor : UserControl
     {
+        public static Font SharedFont;
+
         public CodeEditor(string text = "")
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace Ageui__
 
         public void Highlight()
         {
-            
+            this.Font = SharedFont;
         }
     }
 }
