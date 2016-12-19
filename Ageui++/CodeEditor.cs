@@ -15,9 +15,11 @@ namespace Ageui__
         public CodeEditor(string text) : base()
         {
             this.Text = text;
+
+            this.KeyDown += CodeEditor_KeyDown;
         }
 
-        public override string Text
+        public new String Text
         {
             get
             {
@@ -30,6 +32,22 @@ namespace Ageui__
             set
             {
                 base.Text = value;
+            }
+        }
+
+        private void CodeEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right)
+            {
+                int line = GetLineFromCharIndex(SelectionStart);
+                int column = SelectionStart - GetFirstCharIndexFromLine(line);
+
+                if(Lines[line].Skip(column).Count() == 0)
+                {
+                    SelectionLength = 0;
+                    SelectedText = " ";
+                    SelectionStart -= 1;
+                }
             }
         }
     }

@@ -18,6 +18,10 @@ namespace Ageui__
         {
             InitializeComponent();
             _openedFiles = new List<string>();
+
+#if DEBUG
+            Open("D:\\test.aheui");
+#endif
         }
 
         public MainForm(string[] files) : this()
@@ -52,7 +56,7 @@ namespace Ageui__
 
         private void AddTabPage(string file)
         {
-            CodeEditor c = new CodeEditor(File.ReadAllText(file));
+            CodeEditor c = new CodeEditor(File.ReadAllText(file, Encoding.UTF8));
             c.Dock = DockStyle.Fill;
             TabPage t = new TabPage(Path.GetFileName(file));
             t.Controls.Add(c);
