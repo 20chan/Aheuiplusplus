@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("solution1");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -37,12 +38,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.보기VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.폰트FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.빌드BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.지금파일빌드BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.디버그시작ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.폰트FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,6 +54,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +128,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.treeView1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
@@ -159,6 +163,13 @@
             this.보기VToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.보기VToolStripMenuItem.Text = "보기(&V)";
             // 
+            // 폰트FToolStripMenuItem
+            // 
+            this.폰트FToolStripMenuItem.Name = "폰트FToolStripMenuItem";
+            this.폰트FToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.폰트FToolStripMenuItem.Text = "폰트(&F)";
+            this.폰트FToolStripMenuItem.Click += new System.EventHandler(this.폰트FToolStripMenuItem_Click);
+            // 
             // 빌드BToolStripMenuItem
             // 
             this.빌드BToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -188,12 +199,17 @@
             this.디버그시작ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.디버그시작ToolStripMenuItem.Text = "디버그 시작";
             // 
-            // 폰트FToolStripMenuItem
+            // treeView1
             // 
-            this.폰트FToolStripMenuItem.Name = "폰트FToolStripMenuItem";
-            this.폰트FToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.폰트FToolStripMenuItem.Text = "폰트(&F)";
-            this.폰트FToolStripMenuItem.Click += new System.EventHandler(this.폰트FToolStripMenuItem_Click);
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(3, 17);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "노드0";
+            treeNode1.Text = "solution1";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.treeView1.Size = new System.Drawing.Size(176, 401);
+            this.treeView1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -214,6 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -238,6 +255,7 @@
         private System.Windows.Forms.ToolStripMenuItem 디버그시작ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 폰트FToolStripMenuItem;
         private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
 

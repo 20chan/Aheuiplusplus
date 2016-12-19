@@ -61,6 +61,8 @@ namespace Ageui__
             TabPage t = new TabPage(Path.GetFileName(file));
             t.Controls.Add(c);
             this.tabControl1.TabPages.Add(t);
+
+            this.treeView1.Nodes[0].Nodes.Add(Path.GetFileName(file));
         }
 
         private string GetCurrentScript()
@@ -84,6 +86,10 @@ namespace Ageui__
             if (fontDialog1.ShowDialog() == DialogResult.OK)
             {
                 CodeEditor.SharedFont = fontDialog1.Font;
+                foreach(TabPage p in tabControl1.TabPages)
+                {
+                    p.Controls[0].Font = fontDialog1.Font;
+                }
             }
         }
     }
